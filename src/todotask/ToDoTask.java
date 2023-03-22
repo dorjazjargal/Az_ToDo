@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package todotask;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,18 +29,18 @@ public class ToDoTask {
             str = sc.nextLine();
             String[] inputArray = str.split("\\s+");
             Size_arr = inputArray.length;
-            if (str != null) {
-                task=inputArray[0];
+            if (str != null && Size_arr >= 2) {
+                task = inputArray[0];
                 command = inputArray[1];
                 command = command.toLowerCase();
                 task = task.toLowerCase();
             }
 
-            if (inputArray.length == 2 && command.equals("list")) {
+            if (inputArray.length == 2 && command.equals("list") && task.equals("task")) {
                 List_console();
             }
 
-            if (command.equals("add") || command.equals("done") || command.equals("list")) {
+            if ((command.equals("add") || command.equals("done") || command.equals("list")) && task.equals("task")) {
                 if (command.equals("add")) {
                     toDO = Trim_add(str);
                     my_toDo.add(toDO);
