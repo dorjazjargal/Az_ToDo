@@ -17,9 +17,10 @@ public class ToDoTask {
     /**
      * @param args the command line arguments
      */
-    static String str, command, toDO, task;
+    static String str, command, toDO, task, input2, tempStr;
     static ArrayList<String> my_toDo = new ArrayList<String>();
     static Integer Size_arr = 0;
+    static Boolean Checked = false;
 
     public static void main(String[] args) {
         // TODO code application logic here
@@ -27,37 +28,62 @@ public class ToDoTask {
 
         while (true) {
             str = sc.nextLine();
+            str = str.trim(); // эхлэл төгсгөлөөс нь нь space хасах
             String[] inputArray = str.split("\\s+");
             Size_arr = inputArray.length;
-            if (str != null && Size_arr >= 2) {
+            Checked = false;
+            task = " ";
+            command = " ";
+            input2 = " ";
+            if (str != null && Size_arr == 2) {
                 task = inputArray[0];
                 command = inputArray[1];
                 command = command.toLowerCase();
                 task = task.toLowerCase();
             }
-
-            if (inputArray.length == 2 && command.equals("list") && task.equals("task")) {
-                List_console();
+            if (str != null && Size_arr > 2) {
+                task = inputArray[0];
+                command = inputArray[1];
+                input2 = inputArray[2];
+                tempStr = input2;
+                command = command.toLowerCase();
+                task = task.toLowerCase();
+                input2 = input2.toLowerCase();
+                if (!input2.equals("done")) {
+                    input2 = tempStr;
+                }
             }
 
-            if ((command.equals("add") || command.equals("done") || command.equals("list")) && task.equals("task")) {
-                if (command.equals("add")) {
-                    toDO = Trim_add(str);
-                    my_toDo.add(toDO);
-//                    System.out.println(my_toDo.toString());
-                    System.out.println("Created task " + my_toDo.size());
+            if (task.equals("task") && command.equals("add")) {
+                toDO = Trim_add(str);
+                my_toDo.add(toDO);
+                System.out.println("Created task " + my_toDo.size());
+                Checked = true;
+            }
+            if (task.equals("task") && command.equals("list")) {
+                List_console();
+                Checked = true;
+            }
+            if (task.equals("task") && command.equals("done")) {
+                if (isNumer(input2) && Size_arr == 3) {
+                    Done(input2);
                 }
-                if (command.equals("done") && Size_arr >= 3) {
-                    Done(inputArray[1]);
+            }
+            if (task.equals("task") && input2.equals("done")) {
+                //isNumer(command);
+                if (isNumer(command) && Size_arr == 3) {
+                    Done(command);
                 }
-            } else {
+            }
+            if (Checked == false) {
                 System.out.println("Invalid command");
             }
         }
     }
 
     public static String Trim_add(String str2) {
-        str2 = (String) str2.subSequence(9, str2.length());
+        //үндсэн string-гээс task add  -ийг хасаад, хассаныгаа ялгаж todo рүү нэмэх зорилготой.
+        str2 = (String) str2.subSequence(str2.indexOf(input2), str2.length());
         return str2;
     }
 
@@ -72,11 +98,10 @@ public class ToDoTask {
     }
 
     public static void Done(String DeleteId) {
-        if (isNumer(DeleteId)) {
-            int id = Integer.parseInt(DeleteId);
-            if (id <= my_toDo.size() && my_toDo.isEmpty() == false && id >= 1) {
-                my_toDo.remove(id - 1);
-            }
+        int id = Integer.parseInt(DeleteId);
+        if (id <= my_toDo.size() && my_toDo.isEmpty() == false && id >= 1) {
+            my_toDo.remove(id - 1);
+            Checked = true;
         }
     }
 
