@@ -89,20 +89,17 @@ public class ToDoTask {
     public static String List_console() {
         System.out.println("ID Description");
         System.out.println("_ _  _ _ _ _ _ " + "\n");
-        if (my_toDo.contains("done")) {
-            for (int i = 0; i < my_toDo.size(); i++) {
-                if (my_toDo.get(i).equals("done")) {
-                    my_toDo.remove(i);
+
+        for (int j = 0; j < 2; j++) {
+            if (my_toDo.contains("done")) {
+                for (int i = 0; i < my_toDo.size(); i++) {
+                    if (my_toDo.get(i).equals("done")) {
+                        my_toDo.remove(i);
+                    }
                 }
             }
         }
-         if (my_toDo.contains("done")) {
-            for (int i = 0; i < my_toDo.size(); i++) {
-                if (my_toDo.get(i).equals("done")) {
-                    my_toDo.remove(i);
-                }
-            }
-        }
+
         for (int j = 0; j < my_toDo.size(); j++) {
             System.out.println(my_toDo.indexOf(my_toDo.get(j)) + 1 + " " + my_toDo.get(j));
         }
