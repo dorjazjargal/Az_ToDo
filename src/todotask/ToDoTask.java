@@ -89,15 +89,29 @@ public class ToDoTask {
     public static String List_console() {
         System.out.println("ID Description");
         System.out.println("_ _  _ _ _ _ _ " + "\n");
-        for (int i = 0; i < my_toDo.size(); i++) {
-            System.out.println(my_toDo.indexOf(my_toDo.get(i)) + 1 + " " + my_toDo.get(i));
+        if (my_toDo.contains("done")) {
+            for (int i = 0; i < my_toDo.size(); i++) {
+                if (my_toDo.get(i).equals("done")) {
+                    my_toDo.remove(i);
+                }
+            }
+        }
+         if (my_toDo.contains("done")) {
+            for (int i = 0; i < my_toDo.size(); i++) {
+                if (my_toDo.get(i).equals("done")) {
+                    my_toDo.remove(i);
+                }
+            }
+        }
+        for (int j = 0; j < my_toDo.size(); j++) {
+            System.out.println(my_toDo.indexOf(my_toDo.get(j)) + 1 + " " + my_toDo.get(j));
         }
         System.out.println("task " + my_toDo.size());
         return null;
     }
 
-    public static void Done(String DeleteId) {
-        int id = Integer.parseInt(DeleteId);
+    public static void Done(String ExchangeDone) {
+        int id = Integer.parseInt(ExchangeDone);
         if (!my_toDo.isEmpty()) {
             if (id == 0) {
                 System.out.println("та 0-ээс их id оруулах ёстой!!!");
@@ -108,7 +122,8 @@ public class ToDoTask {
                 Checked = true;
             }
             if (id <= my_toDo.size() && my_toDo.isEmpty() == false && id >= 1) {
-                my_toDo.remove(id - 1);
+                //my_toDo.remove(id - 1);
+                my_toDo.set(id - 1, "done");
                 Checked = true;
             }
         } else {
