@@ -10,8 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Az
- * dorjazjargal@gmail.com
+ * @author Az dorjazjargal@gmail.com
  */
 public class ToDoTask {
 
@@ -99,8 +98,21 @@ public class ToDoTask {
 
     public static void Done(String DeleteId) {
         int id = Integer.parseInt(DeleteId);
-        if (id <= my_toDo.size() && my_toDo.isEmpty() == false && id >= 1) {
-            my_toDo.remove(id - 1);
+        if (!my_toDo.isEmpty()) {
+            if (id == 0) {
+                System.out.println("та 0-ээс их id оруулах ёстой!!!");
+                Checked = true;
+            }
+            if (id > my_toDo.size() && !my_toDo.isEmpty()) {
+                System.out.println(id + " id-тай таск олдоогүй тул та " + my_toDo.size() + " хүртэл тоо оруулна уу");
+                Checked = true;
+            }
+            if (id <= my_toDo.size() && my_toDo.isEmpty() == false && id >= 1) {
+                my_toDo.remove(id - 1);
+                Checked = true;
+            }
+        } else {
+            System.out.println("Таны хийх зүйлсийн жагсаалт хоосон бга тул та хийх зүйлээ нэмсний дараа дахин оролдоно уу");
             Checked = true;
         }
     }
