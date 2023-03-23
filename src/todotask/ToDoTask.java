@@ -107,8 +107,8 @@ public class ToDoTask {
         return null;
     }
 
-    public static void Done(String ExchangeDone) {
-        int id = Integer.parseInt(ExchangeDone);
+    public static void Done(String State_done) {
+        int id = Integer.parseInt(State_done);
         if (!my_toDo.isEmpty()) {
             if (id == 0) {
                 System.out.println("та 0-ээс их id оруулах ёстой!!!");
