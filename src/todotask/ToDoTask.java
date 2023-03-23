@@ -11,6 +11,7 @@ import java.util.Scanner;
 /**
  *
  * @author Az
+ * dorjazjargal@gmail.com
  */
 public class ToDoTask {
 
@@ -70,7 +71,6 @@ public class ToDoTask {
                 }
             }
             if (task.equals("task") && input2.equals("done")) {
-                //isNumer(command);
                 if (isNumer(command) && Size_arr == 3) {
                     Done(command);
                 }
