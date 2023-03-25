@@ -36,12 +36,14 @@ public class ToDoTask {
             command = " ";
             input2 = " ";
             if (str != null && Size_arr == 2) {
+                //task list commandiig ялгахын тулд size_arr==2 gj ялгаж бна
                 task = inputArray[0];
                 command = inputArray[1];
                 command = command.toLowerCase();
                 task = task.toLowerCase();
             }
             if (str != null && Size_arr > 2) {
+                //task done id, task add todo орж ирэхэд энэ хэсэг ажиллана.
                 task = inputArray[0];
                 command = inputArray[1];
                 input2 = inputArray[2];
