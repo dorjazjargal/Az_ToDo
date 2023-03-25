@@ -118,7 +118,7 @@ public class ToDoTask {
                 System.out.println(id + " id-тай таск олдоогүй тул та " + my_toDo.size() + " хүртэл тоо оруулна уу");
                 Checked = true;
             }
-            if (id <= my_toDo.size() && my_toDo.isEmpty() == false && id >= 1) {
+            if (id <= my_toDo.size() && id >= 1) {
                 //my_toDo.remove(id - 1);
                 my_toDo.set(id - 1, "done");
                 Checked = true;
