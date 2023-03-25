@@ -114,7 +114,7 @@ public class ToDoTask {
                 System.out.println("та 0-ээс их id оруулах ёстой!!!");
                 Checked = true;
             }
-            if (id > my_toDo.size() && !my_toDo.isEmpty()) {
+            if (id > my_toDo.size()) {
                 System.out.println(id + " id-тай таск олдоогүй тул та " + my_toDo.size() + " хүртэл тоо оруулна уу");
                 Checked = true;
             }
