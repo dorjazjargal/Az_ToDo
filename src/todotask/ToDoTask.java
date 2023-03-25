@@ -130,7 +130,7 @@ public class ToDoTask {
             Checked = true;
         }
     }
-
+// тоо шалгаж бга хэсэг
     public static boolean isNumer(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isDigit(c)) {
