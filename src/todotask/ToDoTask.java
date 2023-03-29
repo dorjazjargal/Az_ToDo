@@ -32,18 +32,21 @@ public class ToDoTask {
             String[] inputArray = str.split("\\s+");
             Size_arr = inputArray.length;
             Checked = false;
-            task = " ";
-            command = " ";
-            input2 = " ";
+            task = "";
+            command = "";
+            input2 = "";
             if (str != null && Size_arr == 2) {
-                //task list commandiig ялгахын тулд size_arr==2 gj ялгаж бна
                 task = inputArray[0];
                 command = inputArray[1];
                 command = command.toLowerCase();
                 task = task.toLowerCase();
+                tempStr = str.toLowerCase();
+                if (tempStr.equals("task add")) {
+                    System.out.println("Хоосон зүйл нэмэх боломжгүй тул дахин шинээр бичнэ үү");
+                    task = "";
+                }
             }
             if (str != null && Size_arr > 2) {
-                //task done id, task add todo орж ирэхэд энэ хэсэг ажиллана.
                 task = inputArray[0];
                 command = inputArray[1];
                 input2 = inputArray[2];
@@ -54,13 +57,19 @@ public class ToDoTask {
                 if (!input2.equals("done")) {
                     input2 = tempStr;
                 }
+                if (command.equals("list")) {
+                    System.out.println("Зөвхөн task list гэж бичнэ үү. " + input2 + " ийм зүйл бичиж болохгүй");
+                    command = "";
+                }
             }
 
             if (task.equals("task") && command.equals("add")) {
-                toDO = Trim_add(str);
-                my_toDo.add(toDO);
-                System.out.println("Created task " + my_toDo.size());
-                Checked = true;
+                //if ((task + " " + command).equals(str.substring(0, 8))) {
+                    toDO = Trim_add(str);
+                    my_toDo.add(toDO);
+                    System.out.println("Created task " + my_toDo.size());
+                    Checked = true;
+               // }
             }
             if (task.equals("task") && command.equals("list")) {
                 List_console();
@@ -85,7 +94,13 @@ public class ToDoTask {
     public static String Trim_add(String str2) {
         //үндсэн string-гээс task add  -ийг хасаад, хассаныгаа ялгаж todo рүү нэмэх зорилготой.
         str2 = (String) str2.subSequence(str2.indexOf(input2), str2.length());
-        return str2;
+        if (input2.equals("task") || input2.equals("add") ) {
+            String[] tempArr=str.split(" ", 3);
+            System.out.println("temp arr "+tempArr.length);
+            return tempArr[2];
+        } else {
+            return str2;
+        }
     }
 
     public static String List_console() {
@@ -116,11 +131,11 @@ public class ToDoTask {
                 System.out.println("та 0-ээс их id оруулах ёстой!!!");
                 Checked = true;
             }
-            if (id > my_toDo.size()) {
+            if (id > my_toDo.size() && !my_toDo.isEmpty()) {
                 System.out.println(id + " id-тай таск олдоогүй тул та " + my_toDo.size() + " хүртэл тоо оруулна уу");
                 Checked = true;
             }
-            if (id <= my_toDo.size() && id >= 1) {
+            if (id <= my_toDo.size() && my_toDo.isEmpty() == false && id >= 1) {
                 //my_toDo.remove(id - 1);
                 my_toDo.set(id - 1, "done");
                 Checked = true;
