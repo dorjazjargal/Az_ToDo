@@ -96,7 +96,6 @@ public class ToDoTask {
         str2 = (String) str2.subSequence(str2.indexOf(input2), str2.length());
         if (input2.equals("task") || input2.equals("add") ) {
             String[] tempArr=str.split(" ", 3);
-            System.out.println("temp arr "+tempArr.length);
             return tempArr[2];
         } else {
             return str2;
